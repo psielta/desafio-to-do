@@ -1,0 +1,65 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: flex-start;
+
+}
+
+.container+.container {
+    margin-top: 0.75rem;
+}
+
+.task {
+    background: var(--gray-500);
+    border-radius: 8px;
+    padding: 2.5rem;
+    width: calc(66.67% + 7.875rem);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.task input {
+    margin-right: 2rem;
+}
+
+.task button {
+    background: transparent;
+    border: none;
+    color: var(--gray-400);
+    cursor: pointer;
+    line-height: 0;
+    border-radius: 2px;
+
+}
+
+.task button:hover {
+    color: var(--danger);
+
+}
+
+.checkbox {
+    margin-right: 2rem;
+}
+
+.item {
+    display: flex;
+    align-items: flex-start;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.item input[type="checkbox"] {
+    width: 3em;
+    height: 3rem;
+    accent-color: green;
+    border-radius: 4px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    font-size: 2rem;
+    padding: 0.1rem;
+    border: 0.25rem solid green;
+    border-radius: 0.5rem;
+}
