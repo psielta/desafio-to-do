@@ -17,10 +17,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
         builder => builder
-            .WithOrigins("http://localhost:5173") // frontend
+            .WithOrigins("http://177.153.50.185:5173") // frontend rodando em HTTP
             .AllowAnyMethod()
             .AllowAnyHeader()
-            .AllowCredentials());
+            .AllowCredentials()); // Permite o uso de credenciais
 });
 
 var Configuration = builder.Configuration;
@@ -37,25 +37,27 @@ var y = Configuration["Jwt:Issuer"];
 var x = Configuration["Jwt:Audience"];
 var z = Configuration["Jwt:Key"];
 
-
-// Add services to the container.
+// Adicionando serviços ao container
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 builder.Services.AddDbContext<DesafioToDoContext>(options => options.UseNpgsql(IniFile.GetConnectionString()));
-builder.Services.AddScoped<IRepositoryDto<Tarefa, int,TarefaDto>, TarefaRepositoryDto>();
-builder.Services.AddControllers()/*
-        .AddJsonOptions(options =>
-        {
-            options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-            options.JsonSerializerOptions.MaxDepth = 64; 
-        }); */;
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddScoped<IRepositoryDto<Tarefa, int, TarefaDto>, TarefaRepositoryDto>();
+builder.Services.AddControllers();
+/*
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+        options.JsonSerializerOptions.MaxDepth = 64;
+    });
+*/
+
+// Configuração do Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configuração do pipeline de requisição HTTP
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -65,7 +67,7 @@ if (app.Environment.IsDevelopment())
 // Uso do CORS
 app.UseCors("AllowSpecificOrigin");
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();

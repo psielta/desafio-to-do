@@ -31,12 +31,12 @@ public class IniFile
     }
     public static string GetConnectionString()
     {
-        IniFile iniFile = new IniFile($@"{DiretoriosPadroes.DIRETORIO_PADRAO}\GlobalPostGre.ini");
-        string hostname = iniFile.Read("Banco de Dados", "hostname");
-        string database = iniFile.Read("Banco de Dados", "database");
-        string port = iniFile.Read("Banco de Dados", "port");
-        string user = iniFile.Read("Banco de Dados", "user");
-        string password = iniFile.Read("Banco de Dados", "password");
+        //IniFile iniFile = new IniFile($@"{DiretoriosPadroes.DIRETORIO_PADRAO}\GlobalPostGre.ini");
+        string hostname = "localhost"; // iniFile.Read("Banco de Dados", "hostname");
+        string database = "todo_list";// iniFile.Read("Banco de Dados", "database");
+        string port = "5432";//iniFile.Read("Banco de Dados", "port");
+        string user = "ADM";//iniFile.Read("Banco de Dados", "user");
+        string password ="2104";// iniFile.Read("Banco de Dados", "password");
         if (string.IsNullOrEmpty(hostname))
         {
             throw new Exception("Servidor não configurado.");
